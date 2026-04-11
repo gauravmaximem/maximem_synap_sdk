@@ -1,0 +1,25 @@
+name: Publish to PyPI
+on:
+  push:
+    tags: ["*-v*"]  # e.g. synap-langchain-v0.1.0
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install build
+      - name: Determine package from tag
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          PACKAGE=$(echo $TAG | sed 's/-v[0-9].*//')
+          echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
+      - run: cd packages/$PACKAGE && python -m build
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: packages/${{ env.PACKAGE }}/dist/

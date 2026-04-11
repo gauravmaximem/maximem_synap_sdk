@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "synap-google-adk"
+version = "0.1.0"
+description = "Synap memory integration for Google ADK"
+requires-python = ">=3.9"
+license = "Apache-2.0"
+dependencies = ["maximem-synap>=0.2.0", "google-adk>=1.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "pytest-asyncio>=0.21"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["synap_google_adk*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
