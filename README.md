@@ -1,33 +1,22 @@
-# Synap Integrations
+# Synap SDK & Integrations
 
-Framework integrations for [Synap](https://synap.ai) — persistent memory for AI agents and applications.
-
-Each package is a thin wrapper that connects your favorite AI framework to Synap's memory system. Install the SDK + the integration for your framework, and you're ready to go.
-
-## Quick Install
-
-```bash
-# Install the Synap SDK
-pip install maximem-synap
-
-# Install the integration for your framework
-pip install synap-langchain    # LangChain / LangGraph
-pip install synap-crewai       # CrewAI
-pip install synap-llamaindex   # LlamaIndex
-pip install synap-haystack     # Haystack
-pip install synap-google-adk   # Google ADK
-pip install synap-autogen      # AutoGen
-pip install synap-semantic-kernel  # Semantic Kernel
-pip install synap-openai-agents    # OpenAI Agents SDK
-pip install synap-pydantic-ai     # Pydantic AI
-```
+Persistent memory for AI agents and applications. This repo contains the official [Synap](https://synap.ai) SDKs for Python and JavaScript, plus thin framework integrations for the most popular AI frameworks.
 
 ## Packages
+
+### SDKs
+
+| Package | Language | Install |
+|---|---|---|
+| [maximem-synap](packages/maximem-synap/) | Python | `pip install maximem-synap` |
+| [@maximem/synap-js-sdk](packages/maximem-synap-js/) | JavaScript / TypeScript | `npm install @maximem/synap-js-sdk` |
+
+### Framework integrations (Python)
 
 | Package | Framework | Surfaces |
 |---|---|---|
 | [synap-langchain](packages/synap-langchain/) | LangChain / LangGraph | Chat history, retriever, tools, callback handler, graph node |
-| [synap-crewai](packages/synap-crewai/) | CrewAI | Storage backend (long-term, short-term, entity memory) |
+| [synap-crewai](packages/synap-crewai/) | CrewAI | Storage backend |
 | [synap-llamaindex](packages/synap-llamaindex/) | LlamaIndex | Chat memory, retriever |
 | [synap-haystack](packages/synap-haystack/) | Haystack | Retriever component, memory writer component |
 | [synap-google-adk](packages/synap-google-adk/) | Google ADK | Function tools |
@@ -36,7 +25,58 @@ pip install synap-pydantic-ai     # Pydantic AI
 | [synap-openai-agents](packages/synap-openai-agents/) | OpenAI Agents SDK | Tool factories |
 | [synap-pydantic-ai](packages/synap-pydantic-ai/) | Pydantic AI | Deps + tool registration |
 
-## Usage Example (LangChain)
+## Quick start (Python)
+
+```bash
+pip install maximem-synap
+```
+
+```python
+from maximem_synap import MaximemSynapSDK
+
+sdk = MaximemSynapSDK(instance_id="your-instance-id")
+await sdk.initialize(bootstrap_token="your-bootstrap-token")
+
+# Unified cross-scope fetch
+response = await sdk.fetch(
+    conversation_id="conv-123",
+    user_id="user-456",
+    search_query=["what the user is asking"],
+)
+
+print(response.formatted_context)
+```
+
+## Quick start (JavaScript)
+
+```bash
+npm install @maximem/synap-js-sdk
+npx synap-js-sdk setup
+```
+
+```javascript
+const { createClient } = require('@maximem/synap-js-sdk');
+
+const client = createClient({
+    instanceId: 'your-instance-id',
+    bootstrapToken: 'your-bootstrap-token',
+});
+
+await client.init();
+
+const response = await client.fetchUserContext({
+    userId: 'user-456',
+    query: 'what the user is asking',
+});
+
+console.log(response.formattedContext);
+```
+
+## Quick start with LangChain
+
+```bash
+pip install maximem-synap synap-langchain
+```
 
 ```python
 from langchain_openai import ChatOpenAI
@@ -53,10 +93,7 @@ def get_session_history(session_id: str):
         user_id="user-123",
     )
 
-chain = RunnableWithMessageHistory(
-    ChatOpenAI(),
-    get_session_history,
-)
+chain = RunnableWithMessageHistory(ChatOpenAI(), get_session_history)
 
 response = chain.invoke(
     "What did we discuss last time?",
@@ -64,51 +101,46 @@ response = chain.invoke(
 )
 ```
 
-## Usage Example (CrewAI)
+## Features
 
-```python
-from crewai import Agent, Crew, Task
-from maximem_synap import MaximemSynapSDK
-from synap_crewai import SynapStorageBackend
+- **Unified cross-scope fetch** — one call merges context from conversation, user, customer, and client scopes.
+- **Typed memory items** — facts, preferences, episodes, emotions, temporal events.
+- **Automatic conversation recording** — `record_message()` handles ingestion server-side.
+- **In-memory anticipation cache** — sub-10ms cache hits when the server has pre-fetched relevant context.
+- **Multiple retrieval modes** — `FAST` for interactive flows, `ACCURATE` for RAG pipelines.
+- **9 framework integrations** — thin wrappers so your existing code just works.
 
-sdk = MaximemSynapSDK(instance_id="your-instance-id")
-backend = SynapStorageBackend(sdk=sdk, user_id="user-123")
+## Repository structure
 
-agent = Agent(
-    role="Research Assistant",
-    goal="Help the user with research",
-    memory=True,
-    memory_config={"storage": {"provider": backend}},
-)
 ```
-
-## Usage Example (Haystack)
-
-```python
-from haystack import Pipeline
-from maximem_synap import MaximemSynapSDK
-from synap_haystack import SynapRetriever
-
-sdk = MaximemSynapSDK(instance_id="your-instance-id")
-
-pipe = Pipeline()
-pipe.add_component("memory", SynapRetriever(sdk=sdk, user_id="user-123"))
-# ... add more components
+maximem_synap_sdk/
+├── packages/
+│   ├── maximem-synap/          # Python SDK
+│   ├── maximem-synap-js/       # JavaScript SDK
+│   ├── synap-langchain/        # LangChain integration
+│   ├── synap-crewai/           # CrewAI integration
+│   ├── synap-llamaindex/       # LlamaIndex integration
+│   ├── synap-haystack/         # Haystack integration
+│   ├── synap-google-adk/       # Google ADK integration
+│   ├── synap-autogen/          # AutoGen integration
+│   ├── synap-semantic-kernel/  # Semantic Kernel integration
+│   ├── synap-openai-agents/    # OpenAI Agents integration
+│   └── synap-pydantic-ai/      # Pydantic AI integration
+├── .github/workflows/          # CI and publishing workflows
+├── CONTRIBUTING.md
+├── LICENSE
+└── README.md
 ```
-
-## How It Works
-
-1. **Install** the Synap SDK (`maximem-synap`) and the integration for your framework
-2. **Initialize** the SDK with your instance ID
-3. **Pass** the SDK to the integration class
-4. **Use** your framework as normal — Synap handles memory behind the scenes
-
-The SDK communicates with the Synap cloud service to store and retrieve memories. Each integration maps framework-specific interfaces (memory, retriever, tool, etc.) to SDK methods.
 
 ## Requirements
 
-- Python >= 3.9 (some frameworks require 3.10+)
+- **Python SDK**: Python 3.9+
+- **JavaScript SDK**: Node 18+ (plus Python 3.9+ for the Python bridge)
 - A Synap account and instance ID ([sign up](https://synap.ai))
+
+## Contributing
+
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for the fork-first workflow, branch naming conventions, and how to add a new framework integration.
 
 ## License
 

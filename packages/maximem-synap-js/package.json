@@ -1,0 +1,47 @@
+{
+  "name": "@maximem/synap-js-sdk",
+  "version": "0.2.1",
+  "description": "JavaScript SDK for Synap — persistent memory for AI agents",
+  "main": "src/index.js",
+  "types": "types/index.d.ts",
+  "type": "commonjs",
+  "bin": {
+    "synap-js-sdk": "bin/synap-js-sdk.js"
+  },
+  "files": [
+    "src",
+    "types",
+    "bridge/synap_bridge.py",
+    "bin",
+    "README.md",
+    ".env.example"
+  ],
+  "scripts": {
+    "setup": "node bin/synap-js-sdk.js setup",
+    "setup:ts": "node bin/synap-js-sdk.js setup-ts",
+    "check": "node -e \"const sdk=require('./src'); console.log(Object.keys(sdk));\""
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gauravmaximem/maximem_synap_sdk.git",
+    "directory": "packages/maximem-synap-js"
+  },
+  "bugs": {
+    "url": "https://github.com/gauravmaximem/maximem_synap_sdk/issues"
+  },
+  "keywords": [
+    "synap",
+    "memory",
+    "ai",
+    "agents",
+    "llm",
+    "context"
+  ],
+  "license": "Apache-2.0"
+}

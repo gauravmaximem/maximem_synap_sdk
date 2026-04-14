@@ -1,6 +1,6 @@
-# Contributing to Synap Integrations
+# Contributing to Synap SDK & Integrations
 
-Thank you for your interest in contributing! This guide will help you get started.
+Thank you for your interest in contributing! This repo holds the Python SDK, JavaScript SDK, and nine framework integrations, all in one place. This guide covers working on any of them.
 
 ## Getting Started
 
@@ -17,16 +17,36 @@ cd maximem_synap_sdk
 
 ### 2. Set Up Your Development Environment
 
+**Working on the Python SDK:**
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Install the Synap SDK
-pip install maximem-synap
+cd packages/maximem-synap
+pip install -e ".[dev]"
+```
 
-# Install the package you want to work on (e.g. synap-langchain)
+**Working on a Python integration:**
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+
+# Install the SDK from local source (not PyPI)
+pip install -e packages/maximem-synap
+
+# Install the integration you want to work on
 cd packages/synap-langchain
 pip install -e ".[dev]"
+```
+
+**Working on the JavaScript SDK:**
+
+```bash
+cd packages/maximem-synap-js
+npm install
+npm run check  # verify the package loads
 ```
 
 ### 3. Create a Branch
@@ -48,8 +68,24 @@ Use a descriptive branch name:
 
 ```
 packages/
-  synap-langchain/        # Each framework has its own package
-    pyproject.toml         # Package metadata and dependencies
+  maximem-synap/           # Python SDK
+    pyproject.toml
+    README.md
+    maximem_synap/         # SDK source
+      sdk.py
+      cache/
+      auth/
+      ...
+
+  maximem-synap-js/        # JavaScript SDK
+    package.json
+    README.md
+    src/
+    bridge/
+    types/
+
+  synap-langchain/         # LangChain integration
+    pyproject.toml
     synap_langchain/       # Source code
       __init__.py
       memory.py
@@ -62,16 +98,18 @@ packages/
 
 ### Guidelines
 
-- **One package per PR.** If your change touches multiple packages, open separate PRs.
-- **Keep integrations thin.** Each integration should map framework interfaces to SDK methods. Business logic belongs in the SDK, not here.
-- **Don't import SDK internals.** Only use the public API:
+- **One package per PR.** If your change touches multiple packages, open separate PRs. Cross-package changes (e.g. SDK change + integration change) should still be split into separate PRs with a clear dependency note.
+- **Keep integrations thin.** Each integration should map framework interfaces to SDK methods. Business logic belongs in the SDK, not in an integration.
+- **Don't import SDK internals from integrations.** Only use the public API:
   ```python
   # Good
   from maximem_synap import MaximemSynapSDK
+  from maximem_synap.models.context import UnifiedContextResponse
 
   # Bad — internal module, may change without notice
   from maximem_synap.cache.anticipation_cache import AnticipationCache
   ```
+- **SDK contributions:** changes to `packages/maximem-synap/` are reviewed by the Synap team. The SDK is the contract everything else depends on, so breaking changes get extra scrutiny. If you're adding a new method to the SDK, also update the public API documentation in the package README.
 - **Support both sync and async.** Most frameworks support both patterns. Provide async implementations and sync wrappers where the framework expects them.
 - **Handle errors gracefully.** Integration code should log errors but never crash the user's application. Use `try/except` with logging for SDK calls.
 - **Write tests.** Every new feature or bug fix should include tests. Mock the SDK — don't make real API calls in tests.
