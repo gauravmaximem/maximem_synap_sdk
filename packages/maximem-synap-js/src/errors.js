@@ -79,20 +79,6 @@ class AuthenticationError extends SynapPermanentError {
   }
 }
 
-class CertificateExpiredError extends AuthenticationError {
-  constructor(message, correlationId) {
-    super(message, correlationId);
-    this.name = 'CertificateExpiredError';
-  }
-}
-
-class CertificateRenewalError extends AuthenticationError {
-  constructor(message, correlationId) {
-    super(message, correlationId);
-    this.name = 'CertificateRenewalError';
-  }
-}
-
 class BootstrapKeyInvalidError extends AuthenticationError {
   constructor(message, correlationId) {
     super(message, correlationId);
@@ -147,8 +133,6 @@ const ERROR_MAP = {
   InvalidInstanceIdError,
   InvalidConversationIdError,
   AuthenticationError,
-  CertificateExpiredError,
-  CertificateRenewalError,
   BootstrapKeyInvalidError,
   BootstrapError,
   ContextNotFoundError,
@@ -175,8 +159,6 @@ module.exports = {
   InvalidInstanceIdError,
   InvalidConversationIdError,
   AuthenticationError,
-  CertificateExpiredError,
-  CertificateRenewalError,
   BootstrapKeyInvalidError,
   BootstrapError,
   ContextNotFoundError,

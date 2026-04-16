@@ -1,8 +1,6 @@
-"""Authentication and certificate management."""
+"""Authentication for MaximemSynap SDK."""
 
-from .token_manager import TokenManager
-from .cert_manager import CertManager
-from .models import Credentials, BootstrapToken, AuthContext
+from .models import Credentials, AuthContext
 from .storage import (
     CredentialStorage,
     FileCredentialStorage,
@@ -11,10 +9,7 @@ from .storage import (
 from .manager import CredentialManager
 
 __all__ = [
-    "TokenManager",
-    "CertManager",
     "Credentials",
-    "BootstrapToken",
     "AuthContext",
     "CredentialStorage",
     "FileCredentialStorage",

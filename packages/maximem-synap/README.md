@@ -73,23 +73,21 @@ export SYNAP_INSTANCE_ID="your-instance-id"
 export SYNAP_BOOTSTRAP_TOKEN="your-bootstrap-token"
 ```
 
-## Credential storage
+## Authentication
 
-Credentials are stored in `~/.synap/instances/{instance_id}/credentials.json` with file permissions `0o600` (owner read/write only). The file is not encrypted — protection is provided by filesystem permissions.
+Set your API key from the Synap dashboard:
 
-**Do not commit `credentials.json` to version control or share it across users.**
-
-For production deployments, use environment-based credentials instead:
-
-```python
-sdk.configure(credentials_source="env")
+```bash
+export SYNAP_API_KEY=synap_your_key_here
 ```
 
-Expected environment variables:
-- `SYNAP_API_KEY`
-- `SYNAP_CLIENT_ID`
-- `SYNAP_MTLS_CERT_PATH`
-- `SYNAP_MTLS_KEY_PATH`
+Or pass it directly:
+
+```python
+sdk = MaximemSynapSDK(instance_id="...", api_key="synap_...")
+```
+
+For local development, the SDK stores credentials in `~/.synap/instances/{instance_id}/credentials.json` with `0600` file permissions. **Do not commit this file to version control.**
 
 ## Framework integrations
 

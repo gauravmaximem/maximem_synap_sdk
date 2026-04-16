@@ -33,17 +33,12 @@ from .context import (
 # Request/Response envelopes
 from .requests import RequestEnvelope, ResponseEnvelope
 
-# Auth models
-from .auth import AuthContext, Cert, CertMetadata, Token
-
-# Errors (new hierarchy)
+# Errors
 from .errors import (
     AgentUnavailableError,
     AuthenticationError,
     BootstrapError,
     BootstrapKeyInvalidError,
-    CertificateExpiredError,
-    CertificateRenewalError,
     ConnectionError,
     ContextNotFoundError,
     InvalidConversationIdError,
@@ -93,10 +88,6 @@ __all__ = [
     "RequestEnvelope",
     "ResponseEnvelope",
     # Auth
-    "Token",
-    "Cert",
-    "CertMetadata",
-    "AuthContext",
     # Errors (new)
     "SynapError",
     "SynapTransientError",
@@ -108,8 +99,6 @@ __all__ = [
     "InvalidInstanceIdError",
     "InvalidConversationIdError",
     "AuthenticationError",
-    "CertificateExpiredError",
-    "CertificateRenewalError",
     "BootstrapKeyInvalidError",
     "ContextNotFoundError",
     "SessionExpiredError",

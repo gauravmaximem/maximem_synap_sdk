@@ -59,6 +59,8 @@ class BridgeManager {
         'init',
         {
           instance_id: instanceId,
+          api_key: this.options.apiKey
+            || process.env.SYNAP_API_KEY,
           bootstrap_token: this.options.bootstrapToken
             || process.env.SYNAP_BOOTSTRAP_TOKEN
             || process.env.SYNAP_BOOTSTRAP_KEY,

@@ -30,6 +30,7 @@ export interface BridgeLogHandler {
 
 export interface SynapClientOptions {
   instanceId?: string;
+  apiKey?: string;
   bootstrapToken?: string;
   baseUrl?: string;
   grpcHost?: string;
@@ -370,8 +371,6 @@ export class InvalidInputError extends SynapPermanentError {}
 export class InvalidInstanceIdError extends InvalidInputError {}
 export class InvalidConversationIdError extends InvalidInputError {}
 export class AuthenticationError extends SynapPermanentError {}
-export class CertificateExpiredError extends AuthenticationError {}
-export class CertificateRenewalError extends AuthenticationError {}
 export class BootstrapKeyInvalidError extends AuthenticationError {}
 export class BootstrapError extends SynapPermanentError {}
 export class ContextNotFoundError extends SynapPermanentError {}

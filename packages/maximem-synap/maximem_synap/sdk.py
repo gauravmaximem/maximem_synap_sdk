@@ -3,6 +3,7 @@
 import asyncio
 import json
 import logging
+import os
 from datetime import datetime, timezone
 from typing import Any, Callable, Dict, List, Optional
 
@@ -202,7 +203,8 @@ class MaximemSynapSDK:
 
     def __init__(
         self,
-        instance_id: str,
+        instance_id: str = "",
+        api_key: Optional[str] = None,
         bootstrap_token: Optional[str] = None,
         config: Optional[SDKConfig] = None,
         _force_new: bool = False,
@@ -211,7 +213,8 @@ class MaximemSynapSDK:
 
         Args:
             instance_id: Your Synap instance ID from the dashboard
-            bootstrap_token: One-time token for initial setup (required on first use)
+            api_key: API key from the dashboard (or set SYNAP_API_KEY env var)
+            bootstrap_token: One-time token for initial setup (alternative to api_key)
             config: Optional configuration overrides
             _force_new: Force create new instance (for testing)
         """
@@ -223,7 +226,8 @@ class MaximemSynapSDK:
                 self.__dict__ = existing.__dict__
                 return
 
-        self.instance_id = instance_id
+        self.instance_id = instance_id or os.environ.get("SYNAP_INSTANCE_ID", "")
+        self._api_key = api_key
         self._bootstrap_token = bootstrap_token
         self._config = config or SDKConfig()
         self._initialized = False
@@ -301,10 +305,10 @@ class MaximemSynapSDK:
         """Initialize the SDK.
 
         Must be called before using any context operations.
-        On first use, requires bootstrap_token from dashboard.
+        Provide an API key (constructor, env var, or stored) or a bootstrap token.
 
         Args:
-            bootstrap_token: One-time token (required on first use)
+            bootstrap_token: One-time token (alternative to api_key)
         """
         if self._initialized:
             return
@@ -318,19 +322,18 @@ class MaximemSynapSDK:
             storage_path=self._config.storage_path,
         )
 
-        # Create HTTP transport for auth
-        auth_http = HTTPTransport(
-            instance_id=self.instance_id,
-            base_url=self._config.api_base_url,
-            timeouts=self._config.timeouts,
-            retry_policy=self._config.retry_policy,
-        )
-        self._credential_manager.set_auth_client(auth_http)
+        if self._config.api_base_url:
+            self._credential_manager.set_base_url(self._config.api_base_url)
 
-        # Bootstrap or load credentials
+        # Load or bootstrap credentials
         try:
-            credentials = await self._credential_manager.load_or_bootstrap(token)
+            credentials = await self._credential_manager.load_or_bootstrap(
+                api_key=self._api_key,
+                bootstrap_token=token,
+            )
             self._client_id = credentials.client_id
+            if credentials.instance_id:
+                self.instance_id = credentials.instance_id
         except Exception as e:
             raise BootstrapError(f"SDK initialization failed: {e}") from e
 

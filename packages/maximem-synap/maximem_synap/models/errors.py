@@ -86,28 +86,6 @@ class AuthenticationError(SynapPermanentError):
     pass
 
 
-class CertificateExpiredError(AuthenticationError):
-    """Certificate has expired."""
-
-    def __init__(
-        self,
-        message: str = "Certificate has expired",
-        correlation_id: Optional[str] = None,
-    ):
-        super().__init__(message, correlation_id=correlation_id)
-
-
-class CertificateRenewalError(AuthenticationError):
-    """Certificate renewal failed."""
-
-    def __init__(
-        self,
-        message: str = "Certificate renewal failed",
-        correlation_id: Optional[str] = None,
-    ):
-        super().__init__(message, correlation_id=correlation_id)
-
-
 class BootstrapKeyInvalidError(AuthenticationError):
     """Bootstrap key is invalid."""
 
