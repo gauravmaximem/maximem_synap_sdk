@@ -1,60 +1,33 @@
 <p align="center">
-  <a href="https://www.maximem.ai">
-    <img src="https://www.maximem.ai/logo-fullmark.svg" alt="Synap by Maximem AI" width="360" />
-  </a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
+    <img src="assets/banner-dark.png" alt="Maximem Synap — AI Agents Forget. Synap Makes Them Remember." width="100%" />
+  </picture>
 </p>
 
 <p align="center">
-  <strong>The memory layer for production AI applications.</strong>
+  <a href="https://www.maximem.ai/docs"><strong>Docs</strong></a> ·
+  <a href="https://synap.maximem.ai"><strong>Dashboard</strong></a> ·
+  <a href="https://www.maximem.ai/blog/synap-benchmark-results"><strong>Benchmarks</strong></a> ·
+  <a href="https://www.maximem.ai/synap"><strong>Website</strong></a>
 </p>
 
 <p align="center">
-  <a href="https://www.maximem.ai/docs">Docs</a> ·
-  <a href="https://www.maximem.ai/docs/quickstart">Quickstart</a> ·
-  <a href="https://dashboard.maximem.ai">Dashboard</a> ·
-  <a href="https://www.maximem.ai/blog/synap-benchmark-results">Benchmarks</a> ·
-  <a href="https://www.maximem.ai">maximem.ai</a>
-</p>
-
-<p align="center">
-  <a href="https://pypi.org/project/maximem-synap"><img src="https://img.shields.io/pypi/v/maximem-synap?style=flat-square&color=blue" alt="PyPI" /></a>
-  <a href="https://pypi.org/project/maximem-synap"><img src="https://img.shields.io/pypi/dm/maximem-synap?style=flat-square" alt="PyPI Downloads" /></a>
-  <a href="https://www.npmjs.com/package/@maximem/synap-js-sdk"><img src="https://img.shields.io/npm/v/@maximem/synap-js-sdk?style=flat-square&color=blue" alt="npm" /></a>
+  <a href="https://pypi.org/project/maximem-synap"><img src="https://img.shields.io/pypi/v/maximem-synap?style=flat-square&color=blue&label=pypi" alt="PyPI" /></a>
+  <a href="https://pypi.org/project/maximem-synap"><img src="https://img.shields.io/pypi/dm/maximem-synap?style=flat-square&color=blue" alt="PyPI Downloads" /></a>
+  <a href="https://www.npmjs.com/package/@maximem/synap-js-sdk"><img src="https://img.shields.io/npm/v/@maximem/synap-js-sdk?style=flat-square&color=blue&label=npm" alt="npm" /></a>
   <a href="https://pypi.org/project/maximem-synap"><img src="https://img.shields.io/pypi/pyversions/maximem-synap?style=flat-square" alt="Python versions" /></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue?style=flat-square" alt="License" /></a>
+  <a href="https://x.com/maximem_ai"><img src="https://img.shields.io/badge/follow-%40maximem__ai-1DA1F2?style=flat-square&logo=x&logoColor=white" alt="Twitter" /></a>
+  <a href="https://www.linkedin.com/company/maximem-ai"><img src="https://img.shields.io/badge/LinkedIn-Maximem%20AI-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn" /></a>
 </p>
 
 ---
 
-## #1 on LongMemEval
+## The memory layer for production AI agents
 
-Synap leads every major AI memory benchmark — tested across all systems on identical hardware with reproducible, open-source evaluation.
-
-| System | LongMemEval | Notes |
-|---|---|---|
-| **Synap** | **90.2%** | Evaluated with [open-source harness](https://github.com/gauravmaximem/maximem_synap_eval) |
-| SuperMemory | 71.3% | |
-| Zep | 63.8% | Not independently verified |
-| Mem0 | 57.5% | |
-
-**"Longer conversations make Synap better, not worse"** — richer entity graphs and stronger pattern recognition at scale. Full methodology and reproducibility instructions: [maximem.ai/blog/synap-benchmark-results](https://www.maximem.ai/blog/synap-benchmark-results)
-
----
-
-## What is Synap
-
-Your AI agents forget everything between conversations. Synap fixes that — with scoped, typed, persistent memory built for applications that serve real users at scale.
-
-Most memory systems are designed for one user talking to one agent. Synap is designed for **production multi-tenant AI applications**: each of your customers has their own users, each user has their own memory, and every fetch runs in parallel across all relevant scopes in a single call.
-
-```
-client scope        → shared knowledge across your entire platform
-  └── customer scope  → per-company context (B2B use case)
-        └── user scope  → per-user memory, facts, preferences, episodes
-              └── conversation scope  → in-session history and context
-```
-
-Works natively with the framework your team already uses:
+Your AI agents forget everything between conversations. Synap fixes that — with a production-grade memory layer built for applications that serve real users at scale. **#1 on [LongMemEval](https://www.maximem.ai/blog/synap-benchmark-results) with 90.2% accuracy**, sub-15ms anticipatory retrieval, and native integrations with every major AI framework.
 
 <p align="center">
   <strong>LangChain · LlamaIndex · CrewAI · Haystack · Google ADK · AutoGen · OpenAI Agents · Semantic Kernel · Pydantic AI</strong>
@@ -62,19 +35,42 @@ Works natively with the framework your team already uses:
 
 ---
 
+## #1 on LongMemEval
+
+Synap leads every major AI memory benchmark — tested across all systems on identical hardware with an open-source evaluation harness.
+
+<p align="center">
+  <img src="https://qirwvzn87kgnbyp6.public.blob.vercel-storage.com/assets/images/blogs/1775874451091-rkiulltbv8.jpeg" alt="Memory system performance comparison" width="720" />
+</p>
+
+| System | LongMemEval | Notes |
+|---|---|---|
+| **Synap** | **90.2%** | Evaluated with open-source harness |
+| SuperMemory | 71.3% | Independent test |
+| Zep | 63.8% | Not independently verified |
+| Mem0 | 57.5% | Independent test |
+
+> **"Longer conversations make Synap better, not worse."** Richer entity graphs and stronger pattern recognition at scale.
+
+Full methodology and reproduction instructions → [maximem.ai/blog/synap-benchmark-results](https://www.maximem.ai/blog/synap-benchmark-results)
+
+---
+
 ## Install
 
 ```bash
-# Python SDK
+# Python
 pip install maximem-synap
 
-# JavaScript / TypeScript SDK
+# JavaScript / TypeScript
 npm install @maximem/synap-js-sdk
 ```
 
 ---
 
-## 60-second demo
+## 60-second quickstart
+
+Your agent forgets. Synap remembers — across conversations, sessions, and devices.
 
 ```python
 import asyncio
@@ -85,30 +81,29 @@ sdk = MaximemSynapSDK(api_key="your-api-key")
 async def main():
     await sdk.initialize()
 
-    # Record a conversation turn
+    # Monday's standup
     await sdk.conversation.record_message(
-        conversation_id="conv-001",
+        conversation_id="mon-standup",
         user_id="alice",
         role="user",
-        content="I'm migrating our auth to OAuth2 this sprint.",
+        content="I'm migrating our auth service to OAuth2 this sprint.",
     )
 
-    # Later — fetch everything relevant in one call
-    # Merges conversation, user, and customer context in parallel
+    # Friday — completely different conversation, same user
     context = await sdk.fetch(
-        conversation_id="conv-002",
+        conversation_id="fri-review",
         user_id="alice",
-        customer_id="acme-corp",
-        search_query=["current engineering work"],
+        search_query=["what is alice working on?"],
     )
 
     print(context.formatted_context)
-    # → "Alice is migrating auth to OAuth2 this sprint.
-    #    Acme Corp uses AWS and runs on Python 3.12.
-    #    Previous conversation covered deployment pipeline."
+    # → "Alice is migrating the auth service to OAuth2 this sprint."
 
 asyncio.run(main())
 ```
+
+<details>
+<summary><strong>JavaScript / TypeScript</strong></summary>
 
 ```javascript
 const { createClient } = require('@maximem/synap-js-sdk');
@@ -116,19 +111,67 @@ const { createClient } = require('@maximem/synap-js-sdk');
 const client = createClient({ apiKey: 'your-api-key' });
 await client.init();
 
+// Record
+await client.conversation.recordMessage({
+    conversationId: 'mon-standup',
+    userId: 'alice',
+    role: 'user',
+    content: "I'm migrating our auth service to OAuth2 this sprint.",
+});
+
+// Fetch later — anywhere
 const context = await client.fetchUserContext({
     userId: 'alice',
-    query: 'current engineering work',
+    query: 'what is alice working on?',
 });
 
 console.log(context.formattedContext);
 ```
 
+</details>
+
+---
+
+## What makes Synap different
+
+### 🎯 Anticipatory Retrieval
+
+Synap **pre-fetches context before your agent requests it**. 15ms P50 latency in production. For voice AI agents, this is the difference between natural conversation and awkward pauses.
+
+### 🔗 Entity Resolution
+
+When a user says *"my manager"* in turn 3 and *"Sarah"* in turn 12, Synap resolves them automatically. Cross-session, cross-conversation, without the agent doing any work.
+
+### ⏳ Temporal Awareness
+
+Context from 30 minutes ago and context from 30 days ago should not carry equal weight. Synap applies temporal decay and relevance scoring so your agent surfaces the right information at the right time.
+
+### 🧠 Conscious Forgetting
+
+When a user says *"ignore what I said about the budget,"* Synap processes that as a retraction — not just more context to store. Contradiction handling is built into the pipeline.
+
+### 🏗️ Custom Memory Architectures
+
+No universal memory model. Synap builds customized memory architectures per use case. Customer support agents and voice AI agents need different context strategies. Synap handles both.
+
+### 🏢 Multi-Tenant Scoping
+
+Built for B2B from day one. Memory is scoped across a four-level hierarchy:
+
+```
+client          → shared knowledge across your entire platform
+  └── customer  → per-company context (multi-tenant B2B)
+        └── user       → per-user memory and preferences
+              └── conversation → in-session history
+```
+
+One `fetch()` call merges all relevant scopes in parallel.
+
 ---
 
 ## Framework integrations
 
-Nine installable packages — not code snippets, actual PyPI packages with deep framework surfaces.
+Nine installable packages — not code snippets. Deep framework surfaces with callbacks, graph nodes, retrievers, memories, and plugins.
 
 ### LangChain
 
@@ -147,12 +190,9 @@ await sdk.initialize()
 
 chain = RunnableWithMessageHistory(
     ChatOpenAI(),
-    lambda session_id: SynapChatMessageHistory(sdk=sdk, conversation_id=session_id, user_id="alice"),
-)
-
-response = chain.invoke(
-    "What were we working on last time?",
-    config={"configurable": {"session_id": "conv-002"}},
+    lambda session_id: SynapChatMessageHistory(
+        sdk=sdk, conversation_id=session_id, user_id="alice",
+    ),
 )
 ```
 
@@ -165,8 +205,11 @@ pip install maximem-synap synap-crewai
 ```python
 from synap_crewai import SynapStorageBackend
 
-crew = Crew(agents=[...], tasks=[...], memory=True,
-            storage=SynapStorageBackend(sdk=sdk, user_id="alice"))
+crew = Crew(
+    agents=[...], tasks=[...],
+    memory=True,
+    storage=SynapStorageBackend(sdk=sdk, user_id="alice"),
+)
 ```
 
 ### LlamaIndex
@@ -196,46 +239,17 @@ agent = ReActAgent.from_tools(tools, memory=memory)
 | [synap-semantic-kernel](packages/integrations/synap-semantic-kernel/) | Semantic Kernel | `pip install synap-semantic-kernel` |
 | [synap-pydantic-ai](packages/integrations/synap-pydantic-ai/) | Pydantic AI | `pip install synap-pydantic-ai` |
 
----
-
-## Why Synap
-
-| | Naive vector store | Single-user memory (Mem0, Zep) | **Synap** |
-|---|---|---|---|
-| **Multi-tenant scoping** | Manual | Single `user_id` | `user → customer → client` hierarchy |
-| **Memory types** | Raw chunks | Unstructured | Facts, episodes, preferences, emotions, temporal events |
-| **Retrieval latency** | 100–500ms | 50–200ms | Sub-10ms on cache hit (anticipation cache) |
-| **Framework depth** | DIY | Code snippets | 9 installable packages with deep surfaces |
-| **Conversation scope** | Not included | Separate system | Unified fetch across all scopes in one call |
-| **Production readiness** | You build it | Hosted only or self-host | Both; B2B multi-tenant by design |
-
-### Anticipation cache
-
-Synap pre-fetches context before users ask for it. When your agent handles a conversation turn, Synap asynchronously prepares the next context fetch in the background. Cache hits return in **under 10ms**. No waiting for vector search on the hot path.
-
-### Typed memory
-
-Memory isn't just text chunks. Synap extracts and stores structured types:
-
-- **Facts** — `Alice is a senior engineer at Acme Corp`
-- **Preferences** — `Prefers TypeScript over JavaScript`
-- **Episodes** — `Completed OAuth2 migration on 2026-03-15`
-- **Temporal events** — `Sprint ends Friday`
-- **Emotions** — signals for tone and personalization
-
-Query by type, combine types, or fetch everything — your call.
+*Vercel AI SDK coming soon.*
 
 ---
 
-## Benchmarks & evaluation
+## Deep dives
 
-Full benchmark results, methodology, and reproducibility instructions:
-→ [maximem.ai/blog/synap-benchmark-results](https://www.maximem.ai/blog/synap-benchmark-results)
+Understand the system before building on it:
 
-The complete evaluation harness is open source:
-→ [github.com/gauravmaximem/maximem_synap_eval](https://github.com/gauravmaximem/maximem_synap_eval)
-
-We're building **ACM-Bench** — ten realistic agent scenarios covering consistency, false recall rates, and context rot resistance. Targeting May 2026.
+- 📘 **[Why we built Synap](https://www.maximem.ai/blog/why-we-built-synap)** — the problem with current AI memory systems
+- ⚙️ **[How Synap works under the hood](https://www.maximem.ai/blog/how-maximem-synap-works)** — architecture, retrieval pipeline, and design decisions
+- 📊 **[Benchmark results](https://www.maximem.ai/blog/synap-benchmark-results)** — 90.2% on LongMemEval, methodology, and reproducibility
 
 ---
 
@@ -243,7 +257,16 @@ We're building **ACM-Bench** — ten realistic agent scenarios covering consiste
 
 - **Python SDK**: Python 3.9+
 - **JavaScript SDK**: Node 18+ (Python 3.9+ for the bridge layer)
-- A Synap API key — [get one at maximem.ai](https://www.maximem.ai)
+- A Synap API key — [get one at maximem.ai](https://www.maximem.ai/synap)
+
+---
+
+## Resources & community
+
+- 📖 [Documentation](https://www.maximem.ai/docs)
+- 🚀 [Dashboard](https://synap.maximem.ai)
+- 𝕏 [Twitter / X](https://x.com/maximem_ai)
+- 💼 [LinkedIn](https://www.linkedin.com/company/maximem-ai)
 
 ---
 
