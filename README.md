@@ -43,12 +43,14 @@ Synap leads every major AI memory benchmark — tested across all systems on ide
   <img src="https://qirwvzn87kgnbyp6.public.blob.vercel-storage.com/assets/images/blogs/1775874451091-rkiulltbv8.jpeg" alt="Memory system performance comparison" width="720" />
 </p>
 
-| System | LongMemEval | Notes |
-|---|---|---|
-| **Synap** | **90.2%** | Evaluated with open-source harness |
-| SuperMemory | 71.3% | Independent test |
-| Zep | 63.8% | Not independently verified |
-| Mem0 | 57.5% | Independent test |
+| System | LongMemEval |
+|---|---|
+| **Synap** | **90.2%** |
+| SuperMemory | 71.3% |
+| Zep | 63.8% * |
+| Mem0 | 57.5% |
+
+*Synap, SuperMemory, and Mem0 were run through the same [open-source evaluation harness](https://github.com/gauravmaximem/maximem_synap_eval) on identical hardware and configs. Zep's score is self-reported — we could not reproduce it independently.*
 
 > **"Longer conversations make Synap better, not worse."** Richer entity graphs and stronger pattern recognition at scale.
 
