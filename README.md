@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.png">
-    <img src="assets/banner-dark.png" alt="Maximem Synap — AI Agents Forget. Synap Makes Them Remember." width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-light.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-dark.png">
+    <img src="assets/banner-light.png" alt="Maximem Synap — AI Agents Forget. Synap Makes Them Remember." width="100%" />
   </picture>
 </p>
 
